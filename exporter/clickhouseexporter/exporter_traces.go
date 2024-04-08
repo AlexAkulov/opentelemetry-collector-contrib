@@ -46,6 +46,10 @@ func (e *tracesExporter) start(ctx context.Context, _ component.Host) error {
 		return err
 	}
 
+	if e.cfg.SkipTablesCreation {
+		return nil
+	}
+
 	return createTracesTable(ctx, e.cfg, e.client)
 }
 

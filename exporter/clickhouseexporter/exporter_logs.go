@@ -46,6 +46,10 @@ func (e *logsExporter) start(ctx context.Context, _ component.Host) error {
 		return err
 	}
 
+	if e.cfg.SkipTablesCreation {
+		return nil
+	}
+
 	return createLogsTable(ctx, e.cfg, e.client)
 }
 

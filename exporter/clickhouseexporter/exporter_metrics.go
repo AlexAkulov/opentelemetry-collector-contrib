@@ -43,6 +43,10 @@ func (e *metricsExporter) start(ctx context.Context, _ component.Host) error {
 
 	internal.SetLogger(e.logger)
 
+	if e.cfg.SkipTablesCreation {
+		return nil
+	}
+
 	ttlExpr := generateTTLExpr(e.cfg.TTLDays, e.cfg.TTL, "TimeUnix")
 	return internal.NewMetricsTable(ctx, e.cfg.MetricsTableName, e.cfg.ClusterString(), e.cfg.TableEngineString(), ttlExpr, e.client)
 }

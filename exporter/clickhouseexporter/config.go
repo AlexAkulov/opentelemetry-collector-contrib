@@ -47,6 +47,8 @@ type Config struct {
 	TableEngine TableEngine `mapstructure:"table_engine"`
 	// ClusterName if set will append `ON CLUSTER` with the provided name when creating tables.
 	ClusterName string `mapstructure:"cluster_name"`
+	// SkipTablesCreation if set true won't create tables
+	SkipTablesCreation bool `mapstructure:"skip_tables_creation"`
 }
 
 // TableEngine defines the ENGINE string value when creating the table.
